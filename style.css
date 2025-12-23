@@ -175,6 +175,10 @@ pre {
   align-items: center;
   font-family: monospace;
   font-size: 2em;
+  line-height: 1;
+  clip-path: inset(0% 0% 50% 0%);
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* Triggered when a digit changes */
