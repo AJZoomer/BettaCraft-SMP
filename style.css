@@ -103,3 +103,10 @@ footer p {
 .subtitle {
   text-align: center;
 }
+
+/* License Css */
+
+pre {
+  font-family: inherit;
+  white-space: pre-wrap;
+}
