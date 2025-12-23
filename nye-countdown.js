@@ -24,7 +24,9 @@ function createFlipUnit(initialValue) {
 
   const flip = document.createElement("div");
   flip.className = "flip-animation";
-  flip.setAttribute("data-digit", initialValue); // UPDATED
+
+  // NEW: feed the pseudo-element its starting digit
+  flip.setAttribute("data-digit", initialValue);
 
   unit.appendChild(upper);
   unit.appendChild(lower);
@@ -41,14 +43,16 @@ function updateFlipUnit(unit, newValue) {
 
   if (upper.textContent === newValue) return; // No change → no animation
 
-  // OLD: flip.textContent = upper.textContent;
-  flip.setAttribute("data-digit", upper.textContent); // UPDATED
+  // NEW: give the pseudo-element the OLD digit (the one that folds)
+  flip.setAttribute("data-digit", upper.textContent);
 
-  upper.textContent = newValue;         // Set new value on top
-  lower.textContent = newValue;         // Set new value on bottom
+  // Update the visible halves to the NEW digit
+  upper.textContent = newValue;
+  lower.textContent = newValue;
 
+  // Restart the flip animation cleanly
   flip.classList.remove("flip-animate");
-  void flip.offsetWidth; // Force reflow so animation restarts
+  void flip.offsetWidth; // Force reflow
   flip.classList.add("flip-animate");
 }
 
@@ -122,4 +126,3 @@ setInterval(() => {
   });
 
 }, 1000);
-
