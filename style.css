@@ -115,18 +115,13 @@ pre {
 
 /* Flip Clock Digit Boxes */
 .flip-unit {
-  display: inline-block;
   position: relative;
+  display: inline-block;
   width: 40px;
   height: 60px;
   margin: 0 4px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  /* box styling will come from upper/lower, not this container */
   overflow: hidden;
-  background: #f9f9f9;
-  font-size: 2em;
-  font-weight: bold;
-  text-align: center;
 }
 
 /* Top and bottom halves of each digit */
