@@ -115,10 +115,14 @@ pre {
 
 /* Simple bold countdown */
 #countdown {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 800;
   text-align: center;
   margin: 1.5em 0;
   font-family: monospace;
   letter-spacing: 2px;
+
+  background: yellow;     /* TEMP: super obvious */
+  color: red;             /* TEMP: super obvious */
+  border: 3px solid blue; /* TEMP: super obvious */
 }
