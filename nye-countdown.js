@@ -4,7 +4,7 @@
 const COUNTDOWN_ENABLED = true; // set to false to disable
 
 // Set your event Unix timestamp here (seconds, not ms)
-const eventUnix = 1767206399; 
+const eventUnix = 1767184200; 
 const eventDate = eventUnix * 1000;
 
 const countdownContainer = document.getElementById("countdown");
