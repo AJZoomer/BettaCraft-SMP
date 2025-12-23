@@ -1,7 +1,7 @@
-// === Flip Clock Countdown (Unix Time Version) ===
+// === Simple Bold Countdown (Unix Time Version) ===
 
 // Toggle countdown manually
-const COUNTDOWN_ENABLED = true; // set to false to disable
+const COUNTDOWN_ENABLED = true; // set to false to hide the countdown
 
 // Set your event Unix timestamp here (seconds, not ms)
 const eventUnix = 1767184200; 
@@ -9,87 +9,7 @@ const eventDate = eventUnix * 1000;
 
 const countdownContainer = document.getElementById("countdown");
 
-// Create a flip unit element (FIXED VERSION)
-function createFlipUnit(initialValue) {
-  const unit = document.createElement("div");
-  unit.className = "flip-unit";
-
-  const upper = document.createElement("div");
-  upper.className = "upper";
-  upper.textContent = initialValue;
-
-  const lower = document.createElement("div");
-  lower.className = "lower";
-  lower.textContent = initialValue;
-
-  const flip = document.createElement("div");
-  flip.className = "flip-animation";
-
-  // NEW: feed the pseudo-element its starting digit
-  flip.setAttribute("data-digit", initialValue);
-
-  unit.appendChild(upper);
-  unit.appendChild(lower);
-  unit.appendChild(flip);
-
-  return unit;
-}
-
-// Update a flip unit when the digit changes
-function updateFlipUnit(unit, newValue) {
-  const upper = unit.querySelector(".upper");
-  const lower = unit.querySelector(".lower");
-  const flip = unit.querySelector(".flip-animation");
-
-  if (upper.textContent === newValue) return; // No change → no animation
-
-  // NEW: give the pseudo-element the OLD digit (the one that folds)
-  flip.setAttribute("data-digit", upper.textContent);
-
-  // Update the visible halves to the NEW digit
-  upper.textContent = newValue;
-  lower.textContent = newValue;
-
-  // Restart the flip animation cleanly
-  flip.classList.remove("flip-animate");
-  void flip.offsetWidth; // Force reflow
-  flip.classList.add("flip-animate");
-}
-
-// Build the full flip clock structure
-function buildClockStructure() {
-  countdownContainer.innerHTML = "";
-
-  const labels = ["d", "h", "m", "s"];
-  const units = {};
-
-  labels.forEach(label => {
-    const wrapper = document.createElement("span");
-
-    units[label] = {
-      tens: createFlipUnit("0"),
-      ones: createFlipUnit("0")
-    };
-
-    wrapper.appendChild(units[label].tens);
-    wrapper.appendChild(units[label].ones);
-
-    const lbl = document.createElement("span");
-    lbl.className = "time-label";
-    lbl.textContent = label;
-
-    wrapper.appendChild(lbl);
-    countdownContainer.appendChild(wrapper);
-  });
-
-  return units;
-}
-
-const flipUnits = buildClockStructure();
-
-// Update the countdown every second
-setInterval(() => {
-
+function updateCountdown() {
   // Manual override: disable countdown
   if (!COUNTDOWN_ENABLED) {
     countdownContainer.innerHTML = `<p style="text-align:center; margin-top:1em;">You're a bit early — the NYE Stream Event countdown will appear closer to the date.</p>`;
@@ -110,19 +30,14 @@ setInterval(() => {
   const minutes = Math.floor((distance / (1000 * 60)) % 60);
   const seconds = Math.floor((distance / 1000) % 60);
 
-  const values = {
-    d: String(days).padStart(2, "0"),
-    h: String(hours).padStart(2, "0"),
-    m: String(minutes).padStart(2, "0"),
-    s: String(seconds).padStart(2, "0")
-  };
+  const d = String(days).padStart(2, "0");
+  const h = String(hours).padStart(2, "0");
+  const m = String(minutes).padStart(2, "0");
+  const s = String(seconds).padStart(2, "0");
 
-  Object.keys(values).forEach(label => {
-    const tens = values[label][0];
-    const ones = values[label][1];
+  countdownContainer.textContent = `${d}d : ${h}h : ${m}m : ${s}s`;
+}
 
-    updateFlipUnit(flipUnits[label].tens, tens);
-    updateFlipUnit(flipUnits[label].ones, ones);
-  });
-
-}, 1000);
+// Run immediately once, then every second
+updateCountdown();
+setInterval(updateCountdown, 1000);
