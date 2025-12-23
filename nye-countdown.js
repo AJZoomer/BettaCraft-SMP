@@ -24,7 +24,7 @@ function createFlipUnit(initialValue) {
 
   const flip = document.createElement("div");
   flip.className = "flip-animation";
-  flip.textContent = initialValue; // <-- THIS is the important fix
+  flip.setAttribute("data-digit", initialValue); // UPDATED
 
   unit.appendChild(upper);
   unit.appendChild(lower);
@@ -41,7 +41,9 @@ function updateFlipUnit(unit, newValue) {
 
   if (upper.textContent === newValue) return; // No change → no animation
 
-  flip.textContent = upper.textContent; // Start with old value
+  // OLD: flip.textContent = upper.textContent;
+  flip.setAttribute("data-digit", upper.textContent); // UPDATED
+
   upper.textContent = newValue;         // Set new value on top
   lower.textContent = newValue;         // Set new value on bottom
 
@@ -120,3 +122,4 @@ setInterval(() => {
   });
 
 }, 1000);
+
