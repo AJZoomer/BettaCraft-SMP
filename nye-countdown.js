@@ -1,5 +1,8 @@
 // === Flip Clock Countdown (Unix Time Version) ===
 
+// Toggle countdown manually
+const COUNTDOWN_ENABLED = true; // set to false to disable
+
 // Set your event Unix timestamp here (seconds, not ms)
 const eventUnix = 1767206399; 
 const eventDate = eventUnix * 1000;
@@ -70,9 +73,17 @@ const flipUnits = buildClockStructure();
 
 // Update the countdown every second
 setInterval(() => {
+
+  // Manual override: disable countdown
+  if (!COUNTDOWN_ENABLED) {
+    countdownContainer.innerHTML = `<p style="text-align:center; margin-top:1em;">You're a bit early — the NYE Stream Event countdown will appear closer to the date.</p>`;
+    return;
+  }
+
   const now = Date.now();
   const distance = eventDate - now;
 
+  // If the event is live
   if (distance <= 0) {
     countdownContainer.textContent = "The event is live!";
     return;
