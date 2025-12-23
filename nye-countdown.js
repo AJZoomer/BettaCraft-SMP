@@ -9,16 +9,26 @@ const eventDate = eventUnix * 1000;
 
 const countdownContainer = document.getElementById("countdown");
 
-// Create a flip unit element
+// Create a flip unit element (FIXED VERSION)
 function createFlipUnit(initialValue) {
   const unit = document.createElement("div");
   unit.className = "flip-unit";
 
-  unit.innerHTML = `
-    <div class="upper">${initialValue}</div>
-    <div class="lower">${initialValue}</div>
-    <div class="flip-animation"></div>
-  `;
+  const upper = document.createElement("div");
+  upper.className = "upper";
+  upper.textContent = initialValue;
+
+  const lower = document.createElement("div");
+  lower.className = "lower";
+  lower.textContent = initialValue;
+
+  const flip = document.createElement("div");
+  flip.className = "flip-animation";
+  flip.textContent = initialValue; // <-- THIS is the important fix
+
+  unit.appendChild(upper);
+  unit.appendChild(lower);
+  unit.appendChild(flip);
 
   return unit;
 }
