@@ -165,30 +165,30 @@ pre {
   left: 0;
   width: 100%;
   height: 50%;
-  background: #ffffff;
-  transform-origin: bottom;
-  transform: rotateX(0deg);
-  backface-visibility: hidden;
-  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  z-index: 2;
+  perspective: 1000px;
+}
+
+.flip-animation::before {
+  content: attr(data-digit);
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
   font-family: monospace;
   font-size: 2em;
-  line-height: 1;
-  clip-path: inset(0% 0% 50% 0%);
-  z-index: 2;
+  border-bottom: 1px solid #ddd;
+  transform-origin: bottom;
+  transform: rotateX(0deg);
+  backface-visibility: hidden;
   transition: transform 0.6s ease-in-out;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .flip-animation.flip-animate {
   transform: rotateX(-90deg);
-}
-
-/* Triggered when a digit changes */
-.flip-animate {
-  animation: flip 0.6s ease-in-out forwards;
 }
 
 /* Folding animation */
