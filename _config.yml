@@ -1,1 +1,8 @@
 theme: jekyll-theme-cayman
+
+# Add custom CSS
+sass:
+  style: compressed
+
+include:
+  - assets/css/style.css
