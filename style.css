@@ -99,3 +99,7 @@ footer p {
   color: #555;
   margin: 1em 0 2em 0;
 }
+
+.subtitle {
+  text-align: center;
+}
