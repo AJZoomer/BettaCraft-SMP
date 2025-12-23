@@ -61,3 +61,21 @@ ul {
   color: blue;
   text-decoration: underline;
 }
+
+footer {
+  text-align: center;
+  padding: 2em 1em;
+  margin-top: 3em;
+  border-top: 1px solid #ccc;
+  color: #555;
+  font-size: 0.9em;
+}
+
+footer p {
+  margin: 0.4em 0;
+}
+
+.footer-note {
+  font-size: 0.85em;
+  color: #777;
+}
