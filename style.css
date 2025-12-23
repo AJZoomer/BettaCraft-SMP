@@ -112,7 +112,6 @@ pre {
 }
 
 /* NYE Stream Event Page Css */
-/* Simple bold countdown */
 #countdown {
   font-size: 3rem;
   font-weight: 800;
@@ -120,4 +119,19 @@ pre {
   margin: 1.5em 0;
   font-family: monospace;
   letter-spacing: 2px;
+  padding: 0.5em 1em;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  color: #333;
+}
+
+/* NYE Page Section */
+main section {
+  background: white;
+  padding: 1.5em;
+  margin: 2em auto;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
