@@ -1,6 +1,3 @@
----
----
-
 # Welcome to the BettaCraft SMP Official Website
 
 ---
