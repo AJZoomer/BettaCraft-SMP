@@ -1,7 +1,7 @@
 // === Simple Bold Countdown (Unix Time Version) ===
 
 // Toggle countdown manually
-const COUNTDOWN_ENABLED = false; // set to false to hide the countdown
+const COUNTDOWN_ENABLED = true; // set to false to hide the countdown
 
 // Set your event Unix timestamp here (seconds, not ms)
 const eventUnix = 1767184200; 
