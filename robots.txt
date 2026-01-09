@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ajzoomer.github.io/BettaCraft-SMP/sitemap.xml
