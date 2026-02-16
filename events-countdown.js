@@ -12,7 +12,7 @@ const countdownContainer = document.getElementById("countdown");
 function updateCountdown() {
   // Manual override: disable countdown
   if (!COUNTDOWN_ENABLED) {
-    countdownContainer.innerHTML = `<p style="text-align:center; margin-top:1em;">You're a bit early — the NYE Stream Event countdown will appear closer to the date.</p>`;
+    countdownContainer.innerHTML = `<p style="text-align:center; margin-top:1em;">No Events scheduled! Check back here later</p>`;
     return;
   }
 
