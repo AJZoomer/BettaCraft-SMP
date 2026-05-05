@@ -6,22 +6,6 @@ body {
   color: black;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 1em;
-  background: white;
-  border-bottom: 1px solid #ccc;
-}
-
-nav .title {
-  font-weight: bold;
-}
-
-nav a {
-  text-decoration: none;
-  color: black;
-}
 
 .slideshow-container {
   width: 100%;
@@ -43,6 +27,7 @@ h1 {
   text-align: center;
   margin-top: 2em;
 }
+
 
 section {
   padding: 2em;
@@ -134,4 +119,167 @@ main section {
   max-width: 800px;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* FAQ Dropdown CSS */
+
+details {
+  background: white;
+  padding: 1.2em 1.5em;
+  margin: 1.5em auto;
+  max-width: 800px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: background 0.2s ease;
+  overflow: hidden;
+}
+
+details[open] {
+  background: #f8f8f8;
+}
+
+summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1em;
+  list-style: none;
+  line-height: 1.6;
+  min-height: 2.5em;
+  outline: none;
+}
+
+summary:focus {
+  outline: none;
+}
+
+
+summary::after {
+  content: "▸";
+  font-size: 2em;
+  color: #555;
+  transition: transform 0.2s ease;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+details[open] summary::after {
+  transform: rotate(90deg);
+}
+
+/* FAQ Answer Text */
+details p {
+  margin-top: 1em;
+  line-height: 1.6;
+  color: #333;
+}
+
+.faq-sections {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75em;
+  margin: 1.5em 0 2em 0;
+}
+
+.faq-sections a {
+  text-decoration: none;
+  color: #333;
+  background: #f2f2f2;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  font-size: 0.95em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.faq-sections a:hover {
+  background: #e0e0e0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 120px;
+}
+
+.faq-title {
+  text-align: center;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Navigation Bar with Dropdowns */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 1.5em;
+  background: white;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  z-index: 10;
+}
+
+nav .title {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  position: relative;
+}
+
+nav a {
+  display: block;
+  padding: 1em 1.2em;
+  text-decoration: none;
+  color: black;
+  transition: background 0.2s ease;
+}
+
+nav a:hover {
+  background: #f2f2f2;
+}
+
+/* Dropdown styling */
+nav .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+nav .dropdown-content li a {
+  padding: 0.8em 1em;
+  color: #333;
+}
+
+nav .dropdown-content li a:hover {
+  background: #f8f8f8;
+}
+
+/* Show dropdown on hover */
+nav .dropdown:hover .dropdown-content {
+  display: block;
 }
