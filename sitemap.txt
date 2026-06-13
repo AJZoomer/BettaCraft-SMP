@@ -1,9 +1,8 @@
 https://ajzoomer.github.io/BettaCraft-SMP/
-https://ajzoomer.github.io/BettaCraft-SMP/faq.html
+https://ajzoomer.github.io/BettaCraft-SMP/world-downloads.html
 https://ajzoomer.github.io/BettaCraft-SMP/events.html
 https://ajzoomer.github.io/BettaCraft-SMP/about.html
 https://ajzoomer.github.io/BettaCraft-SMP/about-aj.html
 https://ajzoomer.github.io/BettaCraft-SMP/about-spark.html
 https://ajzoomer.github.io/BettaCraft-SMP/about-primal.html
-https://ajzoomer.github.io/BettaCraft-SMP/world-downloads.html
-https://ajzoomer.github.io/BettaCraft-SMP/world-download-terms-and-conditions.html
+https://ajzoomer.github.io/BettaCraft-SMP/faq.html
