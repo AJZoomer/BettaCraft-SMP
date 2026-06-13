@@ -677,7 +677,7 @@
       this.input.value = "";
 
       this.context.history.push(text);
-      if (this.context.history.length > 3) this.context.history.shift();
+      if (this.context.history.length > 2) this.context.history.shift();
 
       this.showThinking();
       setTimeout(() => this.process(text), 300 + Math.random() * 200);
@@ -926,15 +926,15 @@
 
         this.addMessage("bot", "Still here if you need me! 😊", false);
 
-      }, 2000000);
+      }, 20000);
     }
 
     clearChat() {
-      this.chatLog.innerHTML = "";
-      this.context = { lastTopic: null, history: [] };
-      this.showGreeting();
+     this.chatLog.innerHTML = "";
+     this.context = { lastTopic: null, history: [] };
+     this.showGreeting();
     }
-  }
+
   /************************************************************
    * INITIALIZE
    ************************************************************/
