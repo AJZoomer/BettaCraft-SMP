@@ -927,13 +927,14 @@
         this.addMessage("bot", "Still here if you need me! 😊", false);
 
       }, 20000);
-    }
+    
 
     clearChat() {
      this.chatLog.innerHTML = "";
      this.context = { lastTopic: null, history: [] };
      this.showGreeting();
     }
+  }
 
   /************************************************************
    * INITIALIZE
