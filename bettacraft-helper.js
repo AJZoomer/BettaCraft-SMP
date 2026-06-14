@@ -926,7 +926,7 @@
 
         this.addMessage("bot", "Still here if you need me! 😊", false);
 
-      }, 2000);
+      }, 20000);
     }
 
     clearChat() {
