@@ -169,8 +169,8 @@
         "Each season builds on the last — literally and figuratively! 😄 Members collaborate on huge projects, create storylines, and push Minecraft creativity to new limits!"
       ],
       links: [
-        { text: "About BettaCraft", href: "/about.html" },
-        { text: "Members", href: "/about.html#members" }
+        { text: "About BettaCraft", href: "https://ajzoomer.github.io/BettaCraft-SMP/about.html" },
+        { text: "FAQ", href: "https://ajzoomer.github.io/BettaCraft-SMP/faq.html" }
       ]
     },
 
@@ -179,7 +179,7 @@
       "who's in the server",
       "the team",
       "aj zoomer",
-      "sparklez",
+      "spark",
       "primal",
       "members",
       "who plays",
@@ -205,9 +205,9 @@
         "Each member has contributed legendary builds to the SMP! 🏆 Their collaboration is what makes BettaCraft so special!"
       ],
       links: [
-        { text: "AJ", href: "/about-aj.html" },
-        { text: "Spark", href: "/about-spark.html" },
-        { text: "Primal", href: "/about-primal.html" }
+        { text: "AJ", href: "https://ajzoomer.github.io/BettaCraft-SMP/about-aj.html" },
+        { text: "Spark", href: "https://ajzoomer.github.io/BettaCraft-SMP/about-spark.html" },
+        { text: "Primal", href: "https://ajzoomer.github.io/BettaCraft-SMP/about-primal.html" }
       ]
     },
 
@@ -276,8 +276,8 @@
         "From terraforming entire landscapes to building intricate details, the SMP showcases every type of building skill! 🎭"
       ],
       links: [
-        { text: "About AJ", href: "/about-aj.html" },
-        { text: "About Spark", href: "/about-spark.html" }
+        { text: "About AJ", href: "https://ajzoomer.github.io/BettaCraft-SMP/about-aj.html" },
+        { text: "About Spark", href: "https://ajzoomer.github.io/BettaCraft-SMP/about-spark.html" }
       ]
     },
 
@@ -308,7 +308,7 @@
         "Every rule exists to keep BettaCraft welcoming and enjoyable for everyone! 💚"
       ],
       links: [
-        { text: "Rules", href: "/faq.html#rules" }
+        { text: "Rules", href: "https://ajzoomer.github.io/BettaCraft-SMP/faq.html#gameplay" }
       ]
     },
 
@@ -338,7 +338,7 @@
         "Think of it like experiencing the SMP from a different angle! 🎥 You get to see all the amazing work we've created!"
       ],
       links: [
-        { text: "FAQ", href: "/faq.html" }
+        { text: "FAQ", href: "https://ajzoomer.github.io/BettaCraft-SMP/faq.html" }
       ]
     },
 
@@ -401,7 +401,7 @@
         "The history is written in blocks and builds! 🧱 Every structure tells part of the BettaCraft story!"
       ],
       links: [
-        { text: "About BettaCraft", href: "/about.html" }
+        { text: "About BettaCraft", href: "https://ajzoomer.github.io/BettaCraft-SMP/about.html" }
       ]
     },
 
@@ -431,7 +431,7 @@
         "World sizes are tailored to fit the scope of each season! 🌍 From cozy to absolutely massive!"
       ],
       links: [
-        { text: "World Downloads", href: "/world-downloads.html" }
+        { text: "World Downloads", href: "https://ajzoomer.github.io/BettaCraft-SMP/world-downloads.html" }
       ]
     },
 
@@ -461,9 +461,9 @@
         "The more you ask, the more I can share! 🎯 BettaCraft is packed with stories and details!"
       ],
       links: [
-        { text: "AJ", href: "/about-aj.html" },
-        { text: "Spark", href: "/about-spark.html" },
-        { text: "Primal", href: "/about-primal.html" }
+        { text: "AJ", href: "https://ajzoomer.github.io/BettaCraft-SMP/about-aj.html" },
+        { text: "Spark", href: "https://ajzoomer.github.io/BettaCraft-SMP/about-spark.html" },
+        { text: "Primal", href: "https://ajzoomer.github.io/BettaCraft-SMP/about-primal.html" }
       ]
     },
 
@@ -612,7 +612,7 @@
           <div class="bch-widget-header">
             <div class="bch-widget-title-group">
               <h3 class="bch-widget-title">BettaCraft Assistant</h3>
-              <span class="bch-version">v1.0.0</span>
+              <span class="bch-version">v1.0.1</span>
             </div>
             <button class="bch-widget-toggle" id="bch-toggle">▲</button>
           </div>
@@ -926,7 +926,7 @@
 
         this.addMessage("bot", "Still here if you need me! 😊", false);
 
-      }, 20000);
+      }, 200000);
     }
 
     clearChat() {
