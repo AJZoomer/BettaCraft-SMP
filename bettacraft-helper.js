@@ -28,6 +28,60 @@
     return fillers[Math.floor(Math.random() * fillers.length)];
   }
 
+  // --- HTML SANITIZER (for bot HTML only) ---
+
+  const ALLOWED_TAGS = new Set(["A", "BR", "STRONG", "EM", "SPAN"]);
+  const URL_SAFE_PREFIXES = ["http://", "https://", "/", "#"];
+
+  function isSafeHref(href) {
+    if (!href) return false;
+    const lower = href.trim().toLowerCase();
+    if (lower.startsWith("javascript:")) return false;
+    return URL_SAFE_PREFIXES.some(p => lower.startsWith(p));
+  }
+
+  function sanitizeNode(node) {
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      const el = node;
+
+      if (!ALLOWED_TAGS.has(el.tagName)) {
+        // Replace disallowed element with its text content
+        const text = document.createTextNode(el.textContent || "");
+        el.replaceWith(text);
+        return;
+      }
+
+      // Strip all attributes except safe ones
+      const attrs = Array.from(el.attributes);
+      for (const attr of attrs) {
+        const name = attr.name.toLowerCase();
+        if (el.tagName === "A" && name === "href") {
+          if (!isSafeHref(attr.value)) {
+            el.removeAttribute(attr.name);
+          }
+        } else {
+          // Remove all other attributes (no onclick, style, etc.)
+          el.removeAttribute(attr.name);
+        }
+      }
+    }
+
+    // Recurse into children
+    const children = Array.from(node.childNodes);
+    for (const child of children) {
+      sanitizeNode(child);
+    }
+  }
+
+  function safeSetHTML(target, htmlString) {
+    const tmp = document.createElement("div");
+    tmp.innerHTML = htmlString;
+    sanitizeNode(tmp);
+    while (tmp.firstChild) {
+      target.appendChild(tmp.firstChild);
+    }
+  }
+
   /************************************************************
    * PERSONALITY + TONE ENGINE
    ************************************************************/
@@ -132,6 +186,7 @@
       ]
     }
   };
+
   /************************************************************
    * KNOWLEDGE BASE (Core Facts + Deep Dives)
    ************************************************************/
@@ -139,25 +194,25 @@
   const KNOWLEDGE = {
     server: {
       keywords: [
-      "what is bettacraft",
-      "betta craft",
-      "our server",
-      "the world",
-      "tell me about the server",
-      "what's the smp about",
-      "bettacraft info",
-      "game world",
-      "survival world",
-      "minecraft server",
-      "our minecraft world",
-      "what do you do",
-      "creative world",
-      "community world",
-      "multiplayer world",
-      "our game",
-      "what's happening on the server",
-      "server details"
-    ],
+        "what is bettacraft",
+        "betta craft",
+        "our server",
+        "the world",
+        "tell me about the server",
+        "what's the smp about",
+        "bettacraft info",
+        "game world",
+        "survival world",
+        "minecraft server",
+        "our minecraft world",
+        "what do you do",
+        "creative world",
+        "community world",
+        "multiplayer world",
+        "our game",
+        "what's happening on the server",
+        "server details"
+      ],
       responses: [
         "BettaCraft SMP is where creativity meets community! 🎮 A long-running Minecraft world packed with epic builds, amazing lore, and tons of fun moments!",
         "Our world is basically a masterpiece in progress! 🏗️ Check out the <a href='/about.html'>About page</a> to see all the amazing creations!",
@@ -176,24 +231,24 @@
 
     members: {
       keywords: [
-      "who's in the server",
-      "the team",
-      "aj zoomer",
-      "spark",
-      "primal",
-      "members",
-      "who plays",
-      "players",
-      "the creators",
-      "meet the team",
-      "team members",
-      "who are they",
-      "member profiles",
-      "bettacraft team",
-      "the players",
-      "cast",
-      "founders"
-    ],
+        "who's in the server",
+        "the team",
+        "aj zoomer",
+        "spark",
+        "primal",
+        "members",
+        "who plays",
+        "players",
+        "the creators",
+        "meet the team",
+        "team members",
+        "who are they",
+        "member profiles",
+        "bettacraft team",
+        "the players",
+        "cast",
+        "founders"
+      ],
       responses: [
         "We've got an incredible trio! 😄 AJ leads the charge, Spark brings creative energy, and Primal adds unique flair!",
         "Each member is amazing in their own way! 🌟 Check out their individual pages to see what makes them special!",
@@ -213,23 +268,23 @@
 
     seasons: {
       keywords: [
-      "season 1",
-      "season 2",
-      "season 3",
-      "s1",
-      "s2",
-      "s3",
-      "worlds",
-      "which season",
-      "season info",
-      "past seasons",
-      "season history",
-      "world versions",
-      "current season",
-      "new season",
-      "season progression",
-      "eras"
-    ],
+        "season 1",
+        "season 2",
+        "season 3",
+        "s1",
+        "s2",
+        "s3",
+        "worlds",
+        "which season",
+        "season info",
+        "past seasons",
+        "season history",
+        "world versions",
+        "current season",
+        "new season",
+        "season progression",
+        "eras"
+      ],
       responses: [
         "Each season is a new chapter! 📖 S1 was the start, S2 was massive, and S3 has some of the biggest builds ever!",
         "Want to download a world? 🌍 All of our seasons are available on the downloads page!",
@@ -248,23 +303,23 @@
 
     builds: {
       keywords: [
-      "cool builds",
-      "structures",
-      "bases",
-      "megabases",
-      "the buildings",
-      "what's been built",
-      "building projects",
-      "landmark",
-      "monuments",
-      "creative projects",
-      "epic structures",
-      "constructions",
-      "community builds",
-      "collaborative builds",
-      "architecture",
-      "creations"
-    ],
+        "cool builds",
+        "structures",
+        "bases",
+        "megabases",
+        "the buildings",
+        "what's been built",
+        "building projects",
+        "landmark",
+        "monuments",
+        "creative projects",
+        "epic structures",
+        "constructions",
+        "community builds",
+        "collaborative builds",
+        "architecture",
+        "creations"
+      ],
       responses: [
         "Oh man, we've got SO many incredible builds! 🏗️ Megabases, artistic structures, functional farms — you name it!",
         "The builds are the real stars of the show! ⭐ Each one tells a story!",
@@ -283,20 +338,20 @@
 
     rules: {
       keywords: [
-      "what are the rules",
-      "server rules",
-      "guidelines",
-      "policy",
-      "do's and don'ts",
-      "conduct",
-      "respect",
-      "behavior",
-      "code of conduct",
-      "what's allowed",
-      "restrictions",
-      "rule list",
-      "community standards"
-    ],
+        "what are the rules",
+        "server rules",
+        "guidelines",
+        "policy",
+        "do's and don'ts",
+        "conduct",
+        "respect",
+        "behavior",
+        "code of conduct",
+        "what's allowed",
+        "restrictions",
+        "rule list",
+        "community standards"
+      ],
       responses: [
         "Our rules are simple: be kind, have fun, and respect everyone! 😊 Check the FAQ for all the details!",
         "Nothing too strict — just good vibes and common sense! 🤝 Head to the FAQ to read them all!",
@@ -314,19 +369,19 @@
 
     joining: {
       keywords: [
-      "can i join",
-      "how to join",
-      "apply to join",
-      "whitelist",
-      "membership",
-      "sign up",
-      "become a member",
-      "join the server",
-      "play with you",
-      "get invited",
-      "applications",
-      "recruitment"
-    ],
+        "can i join",
+        "how to join",
+        "apply to join",
+        "whitelist",
+        "membership",
+        "sign up",
+        "become a member",
+        "join the server",
+        "play with you",
+        "get invited",
+        "applications",
+        "recruitment"
+      ],
       responses: [
         "While we're not taking new members right now, you can still be part of the adventure! 🎮 Check out our world downloads and follow along!",
         "Sorry, we're not open for applications at the moment 😅 But there's so much to explore with our downloads and updates!",
@@ -344,21 +399,21 @@
 
     socials: {
       keywords: [
-      "follow us",
-      "youtube",
-      "twitch",
-      "discord",
-      "social media",
-      "where can i follow",
-      "streaming",
-      "videos",
-      "channels",
-      "content",
-      "stream schedule",
-      "upload",
-      "instagram",
-      "twitter"
-    ],
+        "follow us",
+        "youtube",
+        "twitch",
+        "discord",
+        "social media",
+        "where can i follow",
+        "streaming",
+        "videos",
+        "channels",
+        "content",
+        "stream schedule",
+        "upload",
+        "instagram",
+        "twitter"
+      ],
       responses: [
         "Follow AJ on Twitch for live gameplay! 🎮 YouTube has all the best highlights and builds!",
         "AJ streams on Twitch and posts to YouTube — check them out! 😄",
@@ -377,19 +432,19 @@
 
     history: {
       keywords: [
-      "when was bettacraft started",
-      "origin",
-      "beginning",
-      "how did it start",
-      "the past",
-      "timeline",
-      "evolution",
-      "from the beginning",
-      "backstory",
-      "season history",
-      "where did it come from",
-      "original world"
-    ],
+        "when was bettacraft started",
+        "origin",
+        "beginning",
+        "how did it start",
+        "the past",
+        "timeline",
+        "evolution",
+        "from the beginning",
+        "backstory",
+        "season history",
+        "where did it come from",
+        "original world"
+      ],
       responses: [
         "BettaCraft started small and grew into something epic! 📈 From a personal world to a multi-season sensation!",
         "It's a journey that's been years in the making! 📖 Each season adds chapters to the story!",
@@ -407,19 +462,19 @@
 
     technical: {
       keywords: [
-      "minecraft version",
-      "java edition",
-      "world seed",
-      "what version",
-      "specs",
-      "technical specs",
-      "system requirements",
-      "how big is the world",
-      "world size",
-      "performance",
-      "server settings",
-      "world type"
-    ],
+        "minecraft version",
+        "java edition",
+        "world seed",
+        "what version",
+        "specs",
+        "technical specs",
+        "system requirements",
+        "how big is the world",
+        "world size",
+        "performance",
+        "server settings",
+        "world type"
+      ],
       responses: [
         "We use modern Java edition for BettaCraft! 🎮 Each season has its own unique seed and world size!",
         "Technical details vary by season, but we keep things optimized and fun! ⚙️",
@@ -437,19 +492,19 @@
 
     deepdives: {
       keywords: [
-      "tell me more",
-      "go deeper",
-      "expand",
-      "more details",
-      "elaborate",
-      "dig deeper",
-      "more about",
-      "deeper insight",
-      "full story",
-      "complete details",
-      "comprehensive",
-      "all the details"
-    ],
+        "tell me more",
+        "go deeper",
+        "expand",
+        "more details",
+        "elaborate",
+        "dig deeper",
+        "more about",
+        "deeper insight",
+        "full story",
+        "complete details",
+        "comprehensive",
+        "all the details"
+      ],
       responses: [
         "Love the deep dive requests! 📚 Pick a topic and let's explore it fully!",
         "Alright, let's get into the details! 🔍 What do you want to know more about?",
@@ -469,18 +524,18 @@
 
     funfacts: {
       keywords: [
-      "fun fact",
-      "trivia",
-      "random fact",
-      "interesting fact",
-      "did you know",
-      "cool fact",
-      "fun fact time",
-      "facts",
-      "interesting things",
-      "surprise me",
-      "tell me something interesting"
-    ],
+        "fun fact",
+        "trivia",
+        "random fact",
+        "interesting fact",
+        "did you know",
+        "cool fact",
+        "fun fact time",
+        "facts",
+        "interesting things",
+        "surprise me",
+        "tell me something interesting"
+      ],
       responses: [
         "Here's a fun one! 🎉 BettaCraft Season 3 features some of the most ambitious builds ever attempted in Minecraft!",
         "Did you know? 🤔 The members spent months planning and building some of the Season 3 structures!",
@@ -496,15 +551,15 @@
 
     jokes: {
       keywords: [
-      "tell me a joke",
-      "make me laugh",
-      "funny",
-      "joke",
-      "something funny",
-      "make a joke",
-      "humor",
-      "comedy"
-    ],
+        "tell me a joke",
+        "make me laugh",
+        "funny",
+        "joke",
+        "something funny",
+        "make a joke",
+        "humor",
+        "comedy"
+      ],
       responses: [
         "Why did the Minecrafter bring a bed to the meeting? 😄 Because they wanted to get some REST API! 🛌",
         "Here's one for you! 😆 Why don't Minecraft players ever get lost? Because they always follow the BLOCK! 🧱",
@@ -520,18 +575,18 @@
 
     capabilities: {
       keywords: [
-      "what can you do",
-      "your abilities",
-      "what are you capable of",
-      "help me",
-      "guide me",
-      "show me around",
-      "features",
-      "functions",
-      "what do you offer",
-      "your purpose",
-      "what should i ask"
-    ],
+        "what can you do",
+        "your abilities",
+        "what are you capable of",
+        "help me",
+        "guide me",
+        "show me around",
+        "features",
+        "functions",
+        "what do you offer",
+        "your purpose",
+        "what should i ask"
+      ],
       responses: [
         "I can guide you through the site, explain SMP lore, link you to pages, and keep you entertained! 😄 Basically I'm your all-in-one info buddy!",
         "Ask me about members, seasons, builds, downloads, social links — you name it! 📘 I'm here to help!",
@@ -547,16 +602,16 @@
 
     creator: {
       keywords: [
-      "who made you",
-      "who created you",
-      "your creator",
-      "who built you",
-      "who developed you",
-      "created by",
-      "made by",
-      "your designer",
-      "origin of the assistant"
-    ],
+        "who made you",
+        "who created you",
+        "your creator",
+        "who built you",
+        "who developed you",
+        "created by",
+        "made by",
+        "your designer",
+        "origin of the assistant"
+      ],
       responses: [
         "I was created by AJ as part of the BettaCraft website! 😄 My mission is to make exploring BettaCraft way more fun!",
         "AJ built me to help visitors navigate and learn about the SMP! 🛠️ Happy to be here!",
@@ -569,8 +624,9 @@
       ],
       links: []
     }
-    
+
   };
+
   /************************************************************
    * ASSISTANT CLASS
    ************************************************************/
@@ -874,11 +930,15 @@
       inner.className = "bch-message-text";
 
       if (html) {
-        inner.innerHTML = text;
+        // Sanitize and render limited HTML
+        safeSetHTML(inner, text);
+
         inner.querySelectorAll("a").forEach((a) => {
           a.addEventListener("click", (e) => {
             e.preventDefault();
-            window.location.href = a.href;
+            if (a.href) {
+              window.location.href = a.href;
+            }
           });
         });
       } else {
@@ -900,11 +960,25 @@
 
       const div = document.createElement("div");
       div.className = "bch-message bch-bot";
-      div.innerHTML = `
-        <div class="bch-message-text" style="border:1px dashed #ccc;background:#f8f8f8;">
-          ${text}
-        </div>
-      `;
+
+      const inner = document.createElement("div");
+      inner.className = "bch-message-text";
+      inner.style.border = "1px dashed #ccc";
+      inner.style.background = "#f8f8f8";
+
+      // Sanitize suggestion HTML too (even though it's from static config)
+      safeSetHTML(inner, text);
+
+      inner.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (a.href) {
+            window.location.href = a.href;
+          }
+        });
+      });
+
+      div.appendChild(inner);
       this.chatLog.appendChild(div);
       this.scroll();
     }
@@ -935,6 +1009,7 @@
       this.showGreeting();
     }
   }
+
   /************************************************************
    * INITIALIZE
    ************************************************************/
@@ -945,31 +1020,31 @@
     new BettaCraftAssistant();
   }
 
-// Auto-resize assistant when keyboard opens on mobile
-if (window.visualViewport) {
+  // Auto-resize assistant when keyboard opens on mobile
+  if (window.visualViewport) {
 
-  const waitForHelper = setInterval(() => {
-    const helper = document.getElementById("bettacraft-helper-root");
+    const waitForHelper = setInterval(() => {
+      const helper = document.getElementById("bettacraft-helper-root");
 
-    if (helper) {
-      clearInterval(waitForHelper);
+      if (helper) {
+        clearInterval(waitForHelper);
 
-      window.visualViewport.addEventListener("resize", () => {
-        const viewportHeight = window.visualViewport.height;
-        const windowHeight = window.innerHeight;
+        window.visualViewport.addEventListener("resize", () => {
+          const viewportHeight = window.visualViewport.height;
+          const windowHeight = window.innerHeight;
 
-        const keyboardHeight = windowHeight - viewportHeight;
+          const keyboardHeight = windowHeight - viewportHeight;
 
-        if (keyboardHeight > 150) {
-          // Keyboard is open
-          helper.style.bottom = `${keyboardHeight + 20}px`;
-        } else {
-          // Keyboard closed
-          helper.style.bottom = "1.5rem";
-        }
-      });
-    }
-  }, 100);
-}
+          if (keyboardHeight > 150) {
+            // Keyboard is open
+            helper.style.bottom = `${keyboardHeight + 20}px`;
+          } else {
+            // Keyboard closed
+            helper.style.bottom = "1.5rem";
+          }
+        });
+      }
+    }, 100);
+  }
 
 })();
