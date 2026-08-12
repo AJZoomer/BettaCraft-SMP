@@ -12,9 +12,20 @@ window.onload = () => {
     slides[slideIndex].style.display = 'block';
   }, 30000);
 };
+// ===============================
 // AUTO-SUGGEST FUNCTIONALITY
+// ===============================
+
 const input = document.getElementById("searchInput");
 const suggestionsBox = document.getElementById("searchSuggestions");
+
+// Build safe suggestion elements
+function buildSuggestionElement(item) {
+  const div = document.createElement("div");
+  div.textContent = `${item.title} (${item.category})`;
+  div.setAttribute("data-url", item.url);
+  return div;
+}
 
 input.addEventListener("input", () => {
   const query = input.value.toLowerCase().trim();
@@ -25,10 +36,12 @@ input.addEventListener("input", () => {
     return;
   }
 
-  const matches = searchIndex.filter(item =>
-    item.title.toLowerCase().includes(query) ||
-    item.keywords.toLowerCase().includes(query)
-  ).slice(0, 5);
+  const matches = searchIndex
+    .filter(item =>
+      item.title.toLowerCase().includes(query) ||
+      item.keywords.toLowerCase().includes(query)
+    )
+    .slice(0, 5);
 
   if (matches.length === 0) {
     suggestionsBox.innerHTML = "";
@@ -36,20 +49,46 @@ input.addEventListener("input", () => {
     return;
   }
 
-  suggestionsBox.innerHTML = matches
-    .map(m => `<div data-url="${m.url}">${m.title} (${m.category})</div>`)
-    .join("");
+  // Clear old suggestions
+  suggestionsBox.innerHTML = "";
+
+  // Add safe DOM elements
+  matches.forEach(item => {
+    const suggestion = buildSuggestionElement(item);
+    suggestionsBox.appendChild(suggestion);
+  });
 
   suggestionsBox.style.display = "block";
 });
 
-// Click suggestion → go to page
+// ===============================
+// SAFE CLICK HANDLER
+// ===============================
+
 suggestionsBox.addEventListener("click", (e) => {
-  const url = e.target.getAttribute("data-url");
-  if (url) window.location.href = url;
+  const raw = e.target.getAttribute("data-url");
+  if (!raw) return;
+
+  try {
+    const url = new URL(raw, window.location.origin);
+
+    // Allow only http/https or local .html pages
+    if (
+      url.protocol === "https:" ||
+      url.protocol === "http:" ||
+      url.pathname.endsWith(".html")
+    ) {
+      window.location.href = url.href;
+    }
+  } catch {
+    // Invalid URL — ignore
+  }
 });
 
-// Enter key → full search page
+// ===============================
+// ENTER KEY → SEARCH PAGE
+// ===============================
+
 input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     window.location.href = `search.html?q=${encodeURIComponent(input.value)}`;
