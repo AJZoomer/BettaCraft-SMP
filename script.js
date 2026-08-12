@@ -64,20 +64,22 @@ input.addEventListener("input", () => {
 // ===============================
 // SAFE CLICK HANDLER
 // ===============================
-
 suggestionsBox.addEventListener("click", (e) => {
   const raw = e.target.getAttribute("data-url");
   if (!raw) return;
 
   try {
-    const url = new URL(raw, window.location.origin);
+    const url = new URL(raw);
 
-    // Allow only http/https or local .html pages
-    if (
-      url.protocol === "https:" ||
-      url.protocol === "http:" ||
-      url.pathname.endsWith(".html")
-    ) {
+    // Internal site links (all under /BettaCraft-SMP/)
+    if (url.hostname === "ajzoomer.github.io") {
+      // Always redirect exactly to the provided URL
+      window.location.href = url.href;
+      return;
+    }
+
+    // External links (Season 2 / Season 3 downloads)
+    if (url.protocol === "https:" || url.protocol === "http:") {
       window.location.href = url.href;
     }
   } catch {
