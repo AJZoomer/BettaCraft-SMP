@@ -4,13 +4,13 @@ const searchIndex = [
   // =========================
   {
     title: "Home",
-    url: "index.html",
+    url: "https://ajzoomer.github.io/BettaCraft-SMP/",
     category: "General",
     keywords: "bettacraft smp homepage server info members creators community minecraft survival long running official site"
   },
   {
     title: "About BettaCraft SMP",
-    url: "about.html",
+    url: "https://ajzoomer.github.io/BettaCraft-SMP/about.html",
     category: "General",
     keywords: "about bettacraft smp history lore server story whitelisted private minecraft community long running origins background"
   },
@@ -20,19 +20,19 @@ const searchIndex = [
   // =========================
   {
     title: "About AJ Zoomer",
-    url: "about-aj.html",
+    url: "https://ajzoomer.github.io/BettaCraft-SMP/about-aj.html",
     category: "Members",
     keywords: "aj zoomer founder owner admin creator youtube twitch streamer builder content creator host operator leader smp admin"
   },
   {
     title: "About Spark",
-    url: "about-spark.html",
+    url: "https://ajzoomer.github.io/BettaCraft-SMP/about-spark.html",
     category: "Members",
     keywords: "spark member friend community helper non creator smp player bettacraft sparkie sparkz"
   },
   {
     title: "About Primal",
-    url: "about-primal.html",
+    url: "https://ajzoomer.github.io/BettaCraft-SMP/about-primal.html",
     category: "Members",
     keywords: "primal member twitch youtube primalcatlive primalcacat creator streamer smp player content primalcat"
   },
@@ -42,7 +42,7 @@ const searchIndex = [
   // =========================
   {
     title: "World Downloads",
-    url: "world-downloads.html",
+    url: "https://ajzoomer.github.io/BettaCraft-SMP/world-downloads.html",
     category: "Downloads",
     keywords: "world downloads maps seasons download bettacraft smp world file save minecraft world zip overworld nether end"
   },
@@ -60,7 +60,7 @@ const searchIndex = [
   },
   {
     title: "World Download Terms & Conditions",
-    url: "world-download-terms-and-conditions.html",
+    url: "https://ajzoomer.github.io/BettaCraft-SMP/world-download-terms-and-conditions.html",
     category: "Downloads",
     keywords: "terms conditions license usage rules world download legal rights permissions allowed not allowed redistribution"
   },
@@ -70,13 +70,13 @@ const searchIndex = [
   // =========================
   {
     title: "Events",
-    url: "events.html",
+    url: "https://ajzoomer.github.io/BettaCraft-SMP/events.html",
     category: "Events",
     keywords: "events competitions minigames community activities bettacraft smp event list schedule stream events"
   },
   {
     title: "NYE Stream Event",
-    url: "events.html",
+    url: "https://ajzoomer.github.io/BettaCraft-SMP/events.html",
     category: "Events",
     keywords: "nye new year countdown stream event celebration holiday special nye stream party live event"
   },
@@ -86,18 +86,8 @@ const searchIndex = [
   // =========================
   {
     title: "FAQ",
-    url: "faq.html",
+    url: "https://ajzoomer.github.io/BettaCraft-SMP/faq.html",
     category: "FAQ",
     keywords: "faq questions whitelist private server rules info help support common questions how to join bettacraft"
   },
-
-  // =========================
-  // PARTNERSHIP
-  // =========================
-  {
-    title: "Partnership Information",
-    url: "partnership-information.html",
-    category: "General",
-    keywords: "partner partnership hosting sponsor bettacraft smp server host supported by partnership details info"
-  }
 ];
