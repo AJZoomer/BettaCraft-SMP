@@ -12,7 +12,6 @@ window.onload = () => {
     slides[slideIndex].style.display = 'block';
   }, 30000);
 };
-
 // AUTO-SUGGEST FUNCTIONALITY
 const input = document.getElementById("searchInput");
 const suggestionsBox = document.getElementById("searchSuggestions");
