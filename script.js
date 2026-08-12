@@ -1,3 +1,5 @@
+const SITE_VERSION = "V26.3.1";
+
 window.onload = () => {
   let slideIndex = 0;
   const slides = document.querySelectorAll('.slide');
@@ -94,5 +96,13 @@ suggestionsBox.addEventListener("click", (e) => {
 input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     window.location.href = `search.html?q=${encodeURIComponent(input.value)}`;
+  }
+});
+
+// Version Number Loader
+document.addEventListener("DOMContentLoaded", () => {
+  const versionElement = document.getElementById("siteVersion");
+  if (versionElement) {
+    versionElement.textContent = SITE_VERSION;
   }
 });
