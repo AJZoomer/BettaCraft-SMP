@@ -1,0 +1,7 @@
+ <div class="bc-sponsor-banner" id="bc-banner">
+  <span>
+    BettaCraft SMP is currently seeking a server host to partner with us.
+    Learn more <a href="partnership-information.html">here</a>.
+  </span>
+  <button class="bc-banner-close" onclick="document.getElementById('bc-banner').style.display='none'">✕</button>
+ </div>

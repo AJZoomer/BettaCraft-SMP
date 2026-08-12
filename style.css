@@ -1,0 +1,441 @@
+body {
+  font-family: sans-serif; 
+  margin: 0;
+  padding: 0; 
+  background: white;
+  color: black;
+}
+
+
+.slideshow-container {
+  width: 100%;
+  height: 400px; /* or any height you want */
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 2em;
+}
+
+
+section {
+  padding: 2em;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+}
+
+.socials li {
+  margin-bottom: 0.5em;
+}
+
+.socials a {
+  color: blue;
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 2em 1em;
+  margin-top: 3em;
+  border-top: 1px solid #ccc;
+  background-color: #f8f8f8;
+  color: #555;
+  font-size: 0.9em;
+}
+
+footer p {
+  margin: 0.5em 0;
+}
+
+.footer-note {
+  font-size: 0.85em;
+  color: #777;
+}
+/* World Downloads Css */
+.season {
+  background: white;
+  padding: 1.5em;
+  margin: 2em 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.season h2 {
+  margin-top: 0;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.2em;
+  color: #555;
+  margin: 1em 0 2em 0;
+}
+
+.subtitle {
+  text-align: center;
+}
+
+/* License Css */
+
+pre {
+  font-family: inherit;
+  white-space: pre-wrap;
+}
+
+/* NYE Stream Event Page Css */
+#countdown {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 1.5em 0;
+  font-family: monospace;
+  letter-spacing: 2px;
+  padding: 0.5em 1em;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  color: #333;
+}
+
+/* NYE Page Section */
+main section {
+  background: white;
+  padding: 1.5em;
+  margin: 2em auto;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* FAQ Dropdown CSS */
+
+details {
+  background: white;
+  padding: 1.2em 1.5em;
+  margin: 1.5em auto;
+  max-width: 800px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: background 0.2s ease;
+  overflow: hidden;
+}
+
+details[open] {
+  background: #f8f8f8;
+}
+
+summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1em;
+  list-style: none;
+  line-height: 1.6;
+  min-height: 2.5em;
+  outline: none;
+}
+
+summary:focus {
+  outline: none;
+}
+
+
+summary::after {
+  content: "▸";
+  font-size: 2em;
+  color: #555;
+  transition: transform 0.2s ease;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+details[open] summary::after {
+  transform: rotate(90deg);
+}
+
+/* FAQ Answer Text */
+details p {
+  margin-top: 1em;
+  line-height: 1.6;
+  color: #333;
+}
+
+.faq-sections {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75em;
+  margin: 1.5em 0 2em 0;
+}
+
+.faq-sections a {
+  text-decoration: none;
+  color: #333;
+  background: #f2f2f2;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  font-size: 0.95em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.faq-sections a:hover {
+  background: #e0e0e0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 120px;
+}
+
+.faq-title {
+  text-align: center;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Navigation Bar with Dropdowns */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 1.5em;
+  background: white;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  z-index: 10;
+}
+
+nav .title {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  position: relative;
+}
+
+nav a {
+  display: block;
+  padding: 1em 1.2em;
+  text-decoration: none;
+  color: black;
+  transition: background 0.2s ease;
+}
+
+nav a:hover {
+  background: #f2f2f2;
+}
+
+/* Dropdown styling */
+nav .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+nav .dropdown-content li a {
+  padding: 0.8em 1em;
+  color: #333;
+}
+
+nav .dropdown-content li a:hover {
+  background: #f8f8f8;
+}
+
+/* Show dropdown on hover */
+nav .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* -----------------------------------------
+   SIMPLE MOBILE NAV (NO DROPDOWNS)
+----------------------------------------- */
+
+@media (max-width: 768px) {
+
+  /* Make nav smaller */
+  nav {
+    padding: 0.6em 1em;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav .title {
+    font-size: 0.95em;
+    max-width: 100%;
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+  }
+
+  /* Stack links vertically */
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.2em;
+  }
+
+  nav li {
+    width: 100%;
+  }
+
+  nav a {
+    padding: 0.6em 0.4em;
+    font-size: 0.9em;
+    width: 100%;
+  }
+
+  /* Disable dropdowns on mobile */
+  nav .dropdown-content {
+    display: none !important;
+  }
+}
+
+/* Even smaller for tiny phones */
+@media (max-width: 480px) {
+
+  nav {
+    padding: 0.5em 0.8em;
+  }
+
+  nav .title {
+    font-size: 0.85em;
+  }
+
+  nav a {
+    font-size: 0.85em;
+    padding: 0.5em 0.3em;
+  }
+}
+
+.bc-sponsor-banner {
+  background: #e5e5e5;          /* light grey */
+  color: #333;                  /* dark grey text */
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #cfcfcf;
+  position: relative;
+}
+
+.bc-sponsor-banner a {
+  color: #555;                  /* medium grey link */
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.bc-banner-close {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.bc-banner-close:hover {
+  color: #000;
+}
+
+/* BIG SEARCH BAR BETWEEN TITLE AND NAV LINKS — SLIMMER */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;                 /* fills the gap between title + nav */
+  margin: 0 1em;
+}
+
+/* Slightly slimmer height */
+.search-container input {
+  width: 100%;
+  padding: 0.75em 1.2em;   /* reduced from 1em → 0.75em */
+  font-size: 1.05em;       /* slightly smaller text to match slimmer height */
+  border: 1px solid #ccc;
+  border-radius: 35px;     /* still rounded */
+  outline: none;
+}
+
+/* Auto-suggest dropdown */
+#searchSuggestions {
+  position: absolute;
+  top: 55px;               /* adjusted for slimmer input */
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  display: none;
+  z-index: 20;
+}
+
+#searchSuggestions div {
+  padding: 0.7em 1em;
+  cursor: pointer;
+  font-size: 0.95em;
+}
+
+#searchSuggestions div:hover {
+  background: #f2f2f2;
+}
+
+/* Mobile — shift search bar left AND prevent right-side cutoff */
+@media (max-width: 768px) {
+  .search-container {
+    width: 100%;
+    margin-top: 0.5em;
+    justify-content: flex-start;
+  }
+
+  .search-container input {
+    width: 90%;          /* reduce width so it doesn't hit the right edge */
+    margin-left: 0.3em;  /* shift slightly left */
+    border-radius: 20px;
+  }
+
+  #searchSuggestions {
+    width: 90%;          /* match the input width */
+    margin-left: 0.3em;
+  }
+}

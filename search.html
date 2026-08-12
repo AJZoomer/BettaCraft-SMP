@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <title>Search Results — BettaCraft SMP</title>
+
+  <!-- Primary SEO -->
+  <meta name="description" content="Search BettaCraft SMP for world downloads, events, members, FAQ answers, and server information.">
+
+  <!-- Keywords -->
+  <meta name="keywords" content="BettaCraft SMP search, Minecraft SMP search, SMP world downloads, BettaCraft members, BettaCraft events, BettaCraft FAQ">
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Search Results — BettaCraft SMP">
+  <meta property="og:description" content="Search BettaCraft SMP for world downloads, events, members, FAQ answers, and server information.">
+  <meta property="og:image" content="https://ajzoomer.github.io/BettaCraft-SMP/assets/bettacraft-og.png">
+  <meta property="og:url" content="https://ajzoomer.github.io/BettaCraft-SMP/search.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Search Results — BettaCraft SMP">
+  <meta name="twitter:description" content="Search BettaCraft SMP for world downloads, events, members, FAQ answers, and server information.">
+  <meta name="twitter:image" content="https://ajzoomer.github.io/BettaCraft-SMP/assets/bettacraft-og.png">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://ajzoomer.github.io/BettaCraft-SMP/search.html">
+
+  <!-- Structured Data: WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Search Results — BettaCraft SMP",
+    "url": "https://ajzoomer.github.io/BettaCraft-SMP/search.html",
+    "description": "Search BettaCraft SMP for world downloads, events, members, FAQ answers, and server information.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "BettaCraft SMP",
+      "url": "https://ajzoomer.github.io/BettaCraft-SMP/"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <span class="title">BettaCraft SMP Official Website</span>
+  <div class="search-container">
+   <input type="text" id="searchInput" placeholder="Search..." autocomplete="off">
+  <div id="searchSuggestions"></div>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="world-downloads.html">World Downloads</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h2>Search Results</h2>
+  <div id="results"></div>
+</section>
+
+<script src="search-index.js"></script>
+
+<script>
+  // Simple HTML escape to prevent XSS from user-controlled values
+  function escapeHTML(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // Get query from URL (raw for display, lowercased for matching)
+  const params = new URLSearchParams(window.location.search);
+  const rawQuery = params.get("q") || "";
+  const query = rawQuery.toLowerCase().trim();
+
+  const resultsDiv = document.getElementById("results");
+
+  if (!query) {
+    // No user input echoed as HTML
+    resultsDiv.textContent = "No search term entered.";
+  } else {
+    const results = searchIndex.filter(item =>
+      item.title.toLowerCase().includes(query) ||
+      item.keywords.toLowerCase().includes(query)
+    );
+
+    if (results.length === 0) {
+      // Escape user input before inserting into innerHTML
+      resultsDiv.innerHTML = `<p>No results found for "<strong>${escapeHTML(rawQuery)}</strong>".</p>`;
+    } else {
+      // Escape any text that is rendered, even though it comes from static data
+      resultsDiv.innerHTML = results.map(r =>
+        `<div class="season">
+          <h3>${escapeHTML(r.title)}</h3>
+          <p><strong>Category:</strong> ${escapeHTML(r.category)}</p>
+          <p><a href="${r.url}">Visit Page</a></p>
+        </div>`
+      ).join("");
+    }
+  }
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
