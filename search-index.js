@@ -90,4 +90,10 @@ const searchIndex = [
     category: "FAQ",
     keywords: "faq questions whitelist private server rules info help support common questions how to join bettacraft"
   },
+  {
+    title: "Server Partnership Information",
+    url: "https://ajzoomer.github.io/BettaCraft-SMP/partnership-information.html",
+    category: "Info",
+    keywords: "partnership server sponsorship partner info"
+  }
 ];
