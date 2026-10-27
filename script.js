@@ -1,4 +1,4 @@
-const SITE_VERSION = "V26.3.2";
+const SITE_VERSION = "V26.3.4";
 
 window.onload = () => {
   let slideIndex = 0;
